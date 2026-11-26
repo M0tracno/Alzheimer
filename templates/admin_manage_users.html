@@ -79,10 +79,11 @@
                                 </td>
                                 <td>{{ patient.created_at.split('.')[0] }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-outline-danger btn-action" 
-                                       onclick="confirmDelete('{{ patient.id }}', '{{ patient.username }}')">
+                                    <button type="button" class="btn btn-sm btn-outline-danger btn-action"
+                                            data-id="{{ patient.id }}" data-name="{{ patient.username }}"
+                                            onclick="confirmDelete(this.dataset.id, this.dataset.name)">
                                         <i class="fas fa-trash"></i>
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -111,7 +112,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a href="#" id="confirmDelete" class="btn btn-danger">Delete</a>
+                    <form id="deleteForm" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -121,7 +124,7 @@
     <script>
         function confirmDelete(userId, username) {
             document.getElementById('patientName').textContent = username;
-            document.getElementById('confirmDelete').href = "{{ url_for('admin_delete_user', user_id=0) }}".replace('0', userId);
+            document.getElementById('deleteForm').action = "{{ url_for('admin_delete_user', user_id=0) }}".replace(/0$/, userId);
             new bootstrap.Modal(document.getElementById('deleteModal')).show();
         }
     </script>

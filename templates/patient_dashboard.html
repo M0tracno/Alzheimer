@@ -167,7 +167,7 @@
                             </div>
                             <div class="text-end">
                                 <small class="text-muted d-block">{{ scan.created_at.split('.')[0] }}</small>
-                                <a href="{{ url_for('static', filename=scan.image_path.split('static/')[1]) }}" 
+                                <a href="{{ url_for('static', filename=scan.image_path.replace('\\', '/').split('static/')[-1]) }}" 
                                    class="btn btn-sm btn-outline-primary mt-1" target="_blank">
                                     <i class="fas fa-eye me-1"></i>View Image
                                 </a>

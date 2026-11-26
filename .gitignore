@@ -8,8 +8,8 @@ dataset/
 *.png
 *.gif
 
-# Model files
-models/
+# Model files (only the deployed model is versioned, via Git LFS)
+models/*
 *.keras
 *.h5
 *.pb
@@ -57,3 +57,5 @@ Thumbs.db
 
 # Logs
 *.log 
+# Deployed model, stored with Git LFS
+!models/resnet50_alzheimer.keras
